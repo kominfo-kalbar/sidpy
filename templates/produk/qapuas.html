@@ -1,17 +1,12 @@
 {% extends 'qapuas/base.html' %}
 {% load static %}
 
-{% block title %}Profil Dashboard{% endblock %}
-{% block title_page %}Profil Dashboard{% endblock %}
+{% block title %}Produk Dashboard{% endblock %}
+{% block title_page %}Produk Dashboard{% endblock %}
 {% block profil_nav %}active{% endblock %}
-{% block html_open %}sidebar-left-collapsed sidebar-left-xs has-left-sidebar-half{% endblock %}
 
 {% block Custom_CSS %}
     <link rel="stylesheet" href="{% static "/admin/css/custom.css" %}">
-{% endblock  %}
-
-{% block sidebar %}
-    {% include "profil/q_sidebar.html" %}
 {% endblock  %}
 
 {% block content %}
@@ -28,13 +23,13 @@
                         </div>
                         <div class="widget-summary-col">
                             <div class="summary">
-                                <h4 class="title">Total Post</h4>
+                                <h4 class="title">Total Produk Item</h4>
                                 <div class="info">
-                                    <strong class="amount">{{total_pages}}</strong>
+                                    <strong class="amount">{{total_item}}</strong>
                                 </div>
                             </div>
                             <div class="summary-footer">
-                                <a class="text-muted text-uppercase" href="{% url 'addPages' %}">(Pages)</a>
+                                <a class="text-muted text-uppercase" href="{% url 'addProduk' %}">(Produk)</a>
                             </div>
                         </div>
                     </div>
@@ -53,13 +48,13 @@
                         </div>
                         <div class="widget-summary-col">
                             <div class="summary">
-                                <h4 class="title">Kategori Berita</h4>
+                                <h4 class="title">Kategori Produk</h4>
                                 <div class="info">
                                     <strong class="amount">{{total_category}}</strong>
                                 </div>
                             </div>
                             <div class="summary-footer">
-                                <a class="text-muted text-uppercase" href="{% url 'addCategory' %}">(Kategori)</a>
+                                <a class="text-muted text-uppercase" href="{% url 'addCategory_produk' %}">(Kategori)</a>
                             </div>
                         </div>
                     </div>
@@ -69,48 +64,17 @@
     </div>
     <div class="col-lg-6 col-xl-3">
         <section class="card card-transparent">
-            <a href="{% url 'addPages' %}" class="btn btn-lg btn-secondary">Tambah Pages</a>
+            <a href="{% url 'addProduk' %}" class="btn btn-lg btn-secondary">Tambah Produk</a>
         </section>
 
         <section class="card card-transparent">
-            <header class="card-header">
-                <div class="card-actions">
-                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
-                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
-                </div>
-
-                <h2 class="card-title">My Stats</h2>
-            </header>
-            <div class="card-body">
-                <section class="card">
-                    <div class="card-body">
-                        <div class="small-chart float-right" id="sparklineBarDash"></div>
-                        <script type="text/javascript">
-                            var sparklineBarDashData = [5, 6, 7, 2, 0, 4 , 2, 4, 2, 0, 4 , 2, 4, 2, 0, 4];
-                        </script>
-                        <div class="h4 font-weight-bold mb-0">488</div>
-                        <p class="text-3 text-muted mb-0">Posting Rata-rata perbulan</p>
-                    </div>
-                </section>
-                <section class="card">
-                    <div class="card-body">
-                        <div class="circular-bar circular-bar-xs m-0 mt-1 mr-4 mb-0 float-right">
-                            <div class="circular-bar-chart" data-percent="45" data-plugin-options='{ "barColor": "#2baab1", "delay": 300, "size": 50, "lineWidth": 4 }'>
-                                <strong>Average</strong>
-                                <label><span class="percent">45</span>%</label>
-                            </div>
-                        </div>
-                        <div class="h4 font-weight-bold mb-0">12</div>
-                        <p class="text-3 text-muted mb-0">Komentar belum dibalas</p>
-                    </div>
-                </section>
-            </div>
+            <a href="{% url 'addCategory_produk' %}" class="btn btn-lg btn-primary">Tambah Kategori Produk</a>
         </section>
     </div>
     <div class="col-lg-12 col-xl-6">
         <div class="row">
             <div class="col-md-12">
-                <h4 class="mt-0 mb-0">Posts Stats</h4>
+                <h4 class="mt-0 mb-0">Produk Stats</h4>
                 <p class="mb-3">Stats Posting selama 7 bulan terakhir.</p>
             </div>
             <div class="col-md-6">
@@ -144,7 +108,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="h4 font-weight-bold mb-0 mt-3">850</div>
-                                        <p class="text-3 text-muted mb-0">Post</p>
+                                        <p class="text-3 text-muted mb-0">Produk Post</p>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="h4 font-weight-bold mb-0 mt-3">123</div>
@@ -214,7 +178,7 @@
                 <div class="card-actions">
                     <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
                 </div>
-                <h2 class="card-title">Daftar Pages</h2>
+                <h2 class="card-title">Daftar Produk</h2>
             </div>
             <div class="card-body">
                 <div class="datatables-header-footer-wrapper">
@@ -227,7 +191,7 @@
                                     <select class="form-control select-style-1 filter-by" name="filter-by">
                                         <option value="all" selected>All</option>
                                         <option value="1">ID</option>
-                                        <option value="2">Judul Berita</option>
+                                        <option value="2">Judul Produk</option>
                                         <option value="3">Dibuat</option>
                                         <option value="4">Kategori</option>
                                         <option value="5">Status</option>
@@ -262,28 +226,28 @@
                             <tr>
                                 <th width="3%"><input type="checkbox" name="select-all" class="select-all checkbox-style-1 p-relative top-2" value="" /></th>
                                 <th width="8%">ID</th>
-                                <th width="28%">Judul Post</th>
-                                <th width="18%">Dibuat</th>
+                                <th width="28%">Judul Produk</th>
                                 <th width="18%">Kategori</th>
                                 <th width="15%">Status</th>
+                                <th width="18%">Updated</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {% for p in pages %}
+                        {% for item in produk %}
                             <tr>
                                 <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
-                                <td><a href="#{{ p.slug }}"><strong>{{ p.id }}</strong></a></td>
-                                <td><a href="{% url 'updatePages' p.id %}"><strong>{{ p.title }}</strong></a></td>
-                                <td>{{ p.date_added }}</td>
-                                <td><a href="{% url 'updateCategory' p.category.id %}">{{ p.category }}</a></td>
-                                <td><span class="ecommerce-status completed">{{ p.status }}</span></td>
+                                <td><a href="#{{ item.slug }}"><strong>{{ item.id }}</strong></a></td>
+                                <td><a href="{% url 'updateProduk' item.id %}"><strong>{{ item.title }}</strong></a></td>
+                                <td><a href="{% url 'updateCategory_produk' item.category.id %}">{{ item.category }}</a></td>
+                                <td><span class="ecommerce-status completed">{{ item.status }}</span></td>
+                                <td>{{ item.updated_at|date:"d M, Y" }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                     <hr class="solid mt-5 opacity-4">
                     <div class="datatable-footer">
-                        <div class="row align-items-center justify-content-between mt-3">                            
+                        <div class="row align-items-center justify-content-between mt-3">
                             <div class="col-lg-auto text-center order-3 order-lg-2">
                                 <div class="results-info-wrapper"></div>
                             </div>
@@ -297,6 +261,4 @@
         </div>
     </div>
 </div>
-
-<!-- end: page -->
 {% endblock content %}
